@@ -1,7 +1,7 @@
 const { User, Reaction } = require("../models");
 
 module.exports = {
-    //get all users
+   
     getUsers(req, res) {
         User.find()
         .then(async (users) => {
@@ -22,12 +22,12 @@ module.exports = {
         .select('-__v')
         .then((user) => 
             !user
-            ? res.status(404).json({ message: 'No user with ID found' })
+            ? res.status(404).json({ message: 'No user for that ID' })
             : res.json(user)
         )
         .catch((err) => res.status(500).json(err));
     },
-    //Create a user
+   
     createUser(req, res) {
         User.create(req.body)
             .then((user) => res.json(user))
@@ -42,7 +42,7 @@ module.exports = {
             )
             .then((user) =>
                 !user
-                ? res.status(404).json({ message: 'No user with ID found' })
+                ? res.status(404).json({ message: 'No user for that ID' })
                 : res.json(user)
             )
             .catch((err) => res.status(500).json(err));
@@ -52,7 +52,7 @@ module.exports = {
         User.findOneAndDelete({ _id: req.params.userId })
         .then((user) =>
                 !user
-                ? res.status(404).json({ message: 'No user with ID found' })
+                ? res.status(404).json({ message: 'No user for that ID' })
                 : res.json(user)
             )
             .catch((err) => res.status(500).json(err));
@@ -66,7 +66,7 @@ module.exports = {
         )
         .then((user) => 
                 !user
-                ? res.status(404).json({ message: 'No user with ID found' })
+                ? res.status(404).json({ message: 'No user for that ID' })
                 : res.json(user)
         )
         .catch((err) => res.status(500).json(err));
@@ -80,7 +80,7 @@ module.exports = {
         )
         .then((user) => 
                 !user
-                ? res.status(404).json({ message: 'No user with ID found' })
+                ? res.status(404).json({ message: 'No user for that ID' })
                 : res.json(user)
         )
         .catch((err) => res.status(500).json(err));
